@@ -84,7 +84,8 @@ def generate_receipt(name, email, cart, total_cost, address):
 
 
 def validate_name(name):
-    return len(parts) == 2 and all(part.isalpha() for part in name.split())
+    parts = name.split()
+    return len(parts) == 2 and all(part.isalpha() for part in parts))
 
 
 def validate_email(email):
