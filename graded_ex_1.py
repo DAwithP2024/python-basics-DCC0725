@@ -34,7 +34,7 @@ products = {
 # Display the product categories
 def display_sorted_products(products_list, sort_order):
     sorted_products = sorted(
-        products_list, key=lambda x: x[1], reverse=(sort_order == "asc")
+        products_list, key=lambda x: x[1], reverse=(sort_order == "desc")
     )
     return sorted_products
 
@@ -53,6 +53,7 @@ def display_categories():
     choice = input("Please select a category by number 0 to Exit: ")
     if choice.isdigit() and 1 <= int(choice) <= len(categories):
         return int(choice) - 1
+    return None
 
 
 def add_to_cart(cart, product, quantity):
@@ -67,6 +68,7 @@ def display_cart(cart):
         total += item_price
         print(f"{product_name} - ${price} x {quantity} = ${item_price}")
     print(f"Total cost: ${total}")
+    return total
 
 
 def generate_receipt(name, email, cart, total_cost, address):
@@ -82,8 +84,7 @@ def generate_receipt(name, email, cart, total_cost, address):
 
 
 def validate_name(name):
-    parts = name.split()
-    return len(parts) == 2 and all(part.isalpha() for part in parts)
+    return len(parts) == 2 and all(part.isalpha() for part in name.split())
 
 
 def validate_email(email):
